@@ -1,12 +1,15 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import styles from './styles';
+import AppText from '@app/components/custom/appText';
+import {ETextType} from '@app/components/types';
+import CustomView from '@app/components/custom/customView';
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-    </View>
+    <CustomView containerStyle={styles.container}>
+      <AppText type={ETextType.H2}>This is home </AppText>
+    </CustomView>
   );
 };
 
