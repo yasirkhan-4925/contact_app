@@ -1,7 +1,12 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Screen} from '@app/navigation/constant';
-import {HomeScreen, SearchScreen, ContactDetailsScreen} from '@app/screens';
+import {
+  HomeScreen,
+  SearchScreen,
+  ContactDetailsScreen,
+  CreateContact,
+} from '@app/screens';
 import StackScreen from '../stackScreen';
 
 const RootStack = createNativeStackNavigator();
@@ -23,6 +28,10 @@ const AppNavigation = () => {
         {StackScreen({
           name: Screen.Search,
           component: SearchScreen,
+        })}
+        {StackScreen({
+          name: Screen.CreateContact,
+          component: CreateContact,
         })}
       </RootStack.Navigator>
     </NavigationContainer>

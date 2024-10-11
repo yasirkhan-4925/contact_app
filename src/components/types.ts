@@ -1,5 +1,4 @@
 import {ReactNode} from 'react';
-import {ViewStyle} from 'react-native';
 
 export interface TextType {
   H0: string;
@@ -34,63 +33,6 @@ export enum ETextType {
   ITALIC_BODY_03 = 'ITALIC_BODY_03',
 }
 
-export enum ChatStatus {
-  SENT = 'sent',
-  DELIVERED = 'delivered',
-  SEEN = 'seen',
-}
-
-export enum ChatType {
-  MEDIA = 'media',
-  TEXT = 'text',
-}
-
-export enum MessageType {
-  IMAGE = 'image',
-  VIDEO = 'video',
-  AUDIO = 'audio',
-  TEXT = 'text',
-  DOCUMENT = 'document',
-}
-
-export enum MediaMimes {
-  IMAGE = 'image/jpeg',
-  VIDEO = 'video/mp4',
-  AUDIO = 'audio/mp3',
-  DOCUMENT = 'application/pdf',
-}
-
-export enum UserVerificationStatus {
-  PENDING = 'pending',
-  APPROVED = 'approved',
-  PAYMENT_PENDING = 'paymentPending',
-  PAYMENT_APPROVED = 'paymentApproved',
-  PAYMENT_REJECTED = 'paymentRejected',
-  REJECTED = 'rejected',
-}
-
-export enum CallLogStatus {
-  MISSED = 'missed',
-  INCOMING = 'incoming',
-  OUTGOING = 'outgoing',
-}
-
-export enum BlockStatus {
-  isUserBlocked = 'isUserBlocked',
-  ifLoggedInUserIsBlocked = 'ifLoggedInUserIsBlocked',
-}
-
-export enum Mute {
-  HOUR_8 = '8 hours',
-  WEEK_1 = '1 week',
-  ALWAYS = 'always',
-}
-
-export enum MuteStatus {
-  MUTE = 'muted',
-  UNMUTE = 'unmuted',
-}
-
 export interface IStyles {
   h0: object;
   h1: object;
@@ -115,14 +57,6 @@ export interface IStyles {
   container: object;
 }
 
-export interface Colors {
-  green: string;
-  yellow: string;
-  inputBg: string;
-  mainTextColor: string;
-  carotColor: string;
-}
-
 export interface AppTextType {
   type?: ETextType;
   underlined?: boolean;
@@ -135,42 +69,8 @@ export interface AppTextType {
   onPress?: () => void;
 }
 
-export interface LoginRequest {
-  username: string;
-  password: string;
-  platform: string;
-  fcmToken?: string;
-  apnsToken?: string;
-}
-
-export interface Translation {
-  t: (value: string) => string;
-}
-
-export interface Input {
-  title: string;
-  requiredFalse: boolean;
-  textarea: boolean;
-  disabled: boolean;
-  onChangeText: (e: string) => void;
-  onBlur: () => void;
-  inputContainer: ViewStyle;
-  borderColor: string;
-}
-
-export interface onTypingInterface {
-  group: string;
-  type: string;
-  user: string;
-}
-
-export enum ThemeMode {
-  DARK = 'dark',
-  LIGHT = 'light',
-  WHATSAPP = 'whatsapp',
-}
-
-export enum ISubscription {
-  MONTHLY = 'monthly',
-  YEARLY = 'yearly',
+export enum ButtonSizeEnum {
+  SMALL = 'SMALL',
+  MEDIUM = 'MEDIUM',
+  LARGE = 'LARGE',
 }

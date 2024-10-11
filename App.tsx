@@ -10,10 +10,11 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 
 import AppNavigation from '@app/navigation/appNavigation';
+import {colors} from '@app/assets/colors';
 function App(): React.JSX.Element {
   const backgroundStyle = {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.bgPrimary,
   };
 
   return (
