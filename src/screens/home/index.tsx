@@ -1,14 +1,14 @@
 import React from 'react';
-import {View} from 'react-native';
 import styles from './styles';
-import AppText from '@app/components/custom/appText';
-import {ETextType} from '@app/components/types';
-import CustomView from '@app/components/custom/customView';
+import SearchBar from '@app/screens/home/components/searchBar';
+import {CustomView, ContactList, Button} from '@app/components';
 
 const HomeScreen = () => {
   return (
     <CustomView containerStyle={styles.container}>
-      <AppText type={ETextType.H2}>This is home </AppText>
+      <SearchBar />
+      <ContactList />
+      <Button />
     </CustomView>
   );
 };
