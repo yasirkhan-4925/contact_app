@@ -5,6 +5,8 @@ export interface Colors {
   bgPrimary: string;
   bgSecondary: string;
   textSecondary: string;
+  buttonDarkSecondary: string;
+  buttonPrimary: string;
 }
 
 export const colors: Colors = {
@@ -14,4 +16,6 @@ export const colors: Colors = {
   bgSecondary: '#16212b',
   bgPrimary: '#090c12',
   textSecondary: '#cacbcc',
+  buttonDarkSecondary: '#4252ff',
+  buttonPrimary: '#767aa6',
 };
