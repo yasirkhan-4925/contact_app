@@ -4,12 +4,14 @@ export interface Colors {
   grey: string;
   bgPrimary: string;
   bgSecondary: string;
+  textSecondary: string;
 }
 
 export const colors: Colors = {
   text: '#ffff',
   white: '#ffffff',
   grey: 'grey',
-  bgSecondary: '#272730',
-  bgPrimary: '#16171c',
+  bgSecondary: '#16212b',
+  bgPrimary: '#090c12',
+  textSecondary: '#cacbcc',
 };

@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: horizontalScale(18),
+    paddingHorizontal: horizontalScale(20),
   },
 });
 

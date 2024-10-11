@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, StyleProp, Text, TextStyle, View} from 'react-native';
 import dynamicStyles from './styles';
 import {colors} from '@app/assets/colors';
 
@@ -20,9 +20,10 @@ interface Props {
   username: string;
   size: number;
   imageUrl?: string | null;
+  customTextStyles?: StyleProp<TextStyle>;
 }
 
-function Avatar({username, size, imageUrl}: Props) {
+function Avatar({username, size, imageUrl, customTextStyles = {}}: Props) {
   const styles = dynamicStyles(colors as never);
 
   const spaces = username?.indexOf(' ');
@@ -93,7 +94,7 @@ function Avatar({username, size, imageUrl}: Props) {
         sizing,
         {backgroundColor: bgColors[randomNum]},
       ]}>
-      <Text style={txtStyle}>{initials.toUpperCase()}</Text>
+      <Text style={[txtStyle, customTextStyles]}>{initials.toUpperCase()}</Text>
     </View>
   );
 }
