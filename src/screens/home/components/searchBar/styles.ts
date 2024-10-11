@@ -10,7 +10,8 @@ const dynamicStyles = () => {
       borderRadius: moderateScale(30),
       flexDirection: 'row',
       alignItems: 'center',
-      paddingHorizontal: horizontalScale(15),
+      paddingLeft: horizontalScale(15),
+      paddingRight: horizontalScale(8),
     },
     searchText: {
       color: colors.textSecondary,
