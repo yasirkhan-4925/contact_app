@@ -17,5 +17,5 @@ export const colors: Colors = {
   bgPrimary: '#090c12',
   textSecondary: '#cacbcc',
   buttonDarkSecondary: '#4252ff',
-  buttonPrimary: '#767aa6',
+  buttonPrimary: '#a1a7f0',
 };

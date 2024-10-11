@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   addIconContainer: {
     position: 'absolute',
 
-    bottom: verticalScale(60),
+    bottom: verticalScale(20),
     right: horizontalScale(25),
   },
 });
