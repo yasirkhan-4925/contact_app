@@ -23,7 +23,9 @@ const ContactListItem = ({userName, onPress}: Props) => {
         customTextStyles={styles.avatarTextStyles}
       />
       <View style={styles.textContainer}>
-        <AppText type={ETextType.H6}> {userName}</AppText>
+        <AppText numberOfLines={1} type={ETextType.H6}>
+          {userName}
+        </AppText>
       </View>
     </TouchableOpacity>
   );
