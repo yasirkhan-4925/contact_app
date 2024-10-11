@@ -15,6 +15,7 @@ const dynamicStyles = () => {
     },
     textContainer: {
       paddingLeft: horizontalScale(15),
+      flex: 1,
     },
   });
 };
