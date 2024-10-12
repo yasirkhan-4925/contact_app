@@ -25,5 +25,8 @@ export default function dynamicStyles() {
       marginTop: verticalScale(10),
       color: colors.buttonPrimary,
     },
+    buttonContainer: {
+      marginTop: horizontalScale(20),
+    },
   });
 }

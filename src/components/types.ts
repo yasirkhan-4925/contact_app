@@ -81,11 +81,19 @@ export interface ContactFormValues {
   lastName: string;
   company: string;
   phoneNumbers: phoneNumber[];
+  emailAddresses: email[];
 }
 
 type phoneNumber = {
+  id: string;
   label: string;
   number: string;
+};
+
+type email = {
+  id: string;
+  label: string;
+  email: string;
 };
 export interface IContactData {
   displayName: string;

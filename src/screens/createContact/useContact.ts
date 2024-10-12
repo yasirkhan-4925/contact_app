@@ -28,14 +28,15 @@ export default function useContact() {
     const isNoErrors = isObjectEmpty(errors);
     if (isNoErrors) {
       const values = await getFormikValues(formikRef);
-      console.log('🚀 ~ onSaveButtonPressed ~ values:', values);
-      // if (values) {
-      //   const contact = await createContact(values);
-      //   console.log('🚀 ~ onSaveButtonPressed ~ contact:', contact);
-      //   if (contact) {
-      //     navigation.popToTop();
-      //   }
-      // }
+
+      if (values) {
+        const contact = await createContact(values);
+        console.log('🚀 ~ onSaveButtonPressed ~ contact:', contact);
+
+        if (contact) {
+          navigation.popToTop();
+        }
+      }
     }
   };
 
@@ -44,12 +45,8 @@ export default function useContact() {
       const newContact = {
         givenName: values.firstName,
         familyName: values.lastName,
-        phoneNumbers: [
-          {
-            label: 'home',
-            number: '232323232',
-          },
-        ],
+        phoneNumbers: values.phoneNumbers,
+        emailAddresses: values.emailAddresses,
         company: values.company,
       };
 

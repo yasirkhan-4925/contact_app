@@ -1,4 +1,4 @@
-import {moderateScale, verticalScale} from '@app/utils';
+import {horizontalScale, moderateScale, verticalScale} from '@app/utils';
 import {StyleSheet} from 'react-native';
 
 export default function dynamicStyles(
@@ -16,6 +16,9 @@ export default function dynamicStyles(
     },
     buttonTextColor: {
       color: buttonTextColor,
+    },
+    iconContainer: {
+      marginRight: horizontalScale(5),
     },
   });
 }
