@@ -1,3 +1,4 @@
+import {PhoneNumber} from './../../node_modules/react-native-contacts/type';
 import {ReactNode} from 'react';
 
 export interface TextType {
@@ -79,6 +80,7 @@ export interface ContactFormValues {
   firstName: string;
   lastName: string;
   company: string;
+  PhoneNumbers: phoneNumber[];
 }
 
 type phoneNumber = {
@@ -88,4 +90,9 @@ type phoneNumber = {
 export interface IContactData {
   displayName: string;
   phoneNumbers: phoneNumber[];
+}
+
+export enum FormFieldTypeEnum {
+  TEXT_INPUT = 'TEXT_INPUT',
+  PHONE_INPUT = 'PHONE_INPUT',
 }

@@ -9,7 +9,7 @@ import {
 } from '@app/utils';
 import {ContactFormValues} from '@app/components/types';
 import Contacts from 'react-native-contacts';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function useContact() {
   const navigation = useNavigation<any>();
@@ -28,13 +28,14 @@ export default function useContact() {
     const isNoErrors = isObjectEmpty(errors);
     if (isNoErrors) {
       const values = await getFormikValues(formikRef);
-      if (values) {
-        const contact = await createContact(values);
-        console.log('🚀 ~ onSaveButtonPressed ~ contact:', contact);
-        if (contact) {
-          navigation.popToTop();
-        }
-      }
+      console.log('🚀 ~ onSaveButtonPressed ~ values:', values);
+      // if (values) {
+      //   const contact = await createContact(values);
+      //   console.log('🚀 ~ onSaveButtonPressed ~ contact:', contact);
+      //   if (contact) {
+      //     navigation.popToTop();
+      //   }
+      // }
     }
   };
 
