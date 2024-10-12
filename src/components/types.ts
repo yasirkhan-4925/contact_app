@@ -74,3 +74,18 @@ export enum ButtonSizeEnum {
   MEDIUM = 'MEDIUM',
   LARGE = 'LARGE',
 }
+
+export interface ContactFormValues {
+  firstName: string;
+  lastName: string;
+  company: string;
+}
+
+type phoneNumber = {
+  label: string;
+  number: string;
+};
+export interface IContactData {
+  displayName: string;
+  phoneNumbers: phoneNumber[];
+}

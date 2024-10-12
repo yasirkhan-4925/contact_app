@@ -7,11 +7,11 @@ import useContact from './useContact';
 
 const CreateContact = () => {
   const styles = dynamicStyles();
-  const {onSaveButtonPressed} = useContact();
+  const {onSaveButtonPressed, formikRef} = useContact();
   return (
     <View style={styles.container}>
       <Header onSaveButtonPress={onSaveButtonPressed} />
-      <ContactForm />
+      <ContactForm ref={formikRef} />
     </View>
   );
 };
