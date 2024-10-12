@@ -7,7 +7,7 @@ export default function dynamicStyles() {
       flexDirection: 'row',
       height: verticalScale(60),
       alignItems: 'center',
-      paddingTop: horizontalScale(5),
+      paddingTop: verticalScale(20),
       paddingLeft: horizontalScale(10),
       paddingRight: horizontalScale(5),
     },
