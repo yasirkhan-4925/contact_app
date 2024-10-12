@@ -3,13 +3,15 @@ import {Alert, Linking} from 'react-native';
 async function requestContactWritePermission() {
   if (Platform.OS === 'android') {
     try {
-      return PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS,
-        {
-          title: 'Contacts Permission',
-          message: 'This app would like to get write contact permission.',
-          buttonPositive: 'Allow',
-        },
+      return (
+        (await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS,
+          {
+            title: 'Contacts Permission',
+            message: 'This app would like to get write contact permission.',
+            buttonPositive: 'Allow',
+          },
+        )) === PermissionsAndroid.RESULTS.GRANTED
       );
     } catch (error) {
       Promise.reject(error);
