@@ -52,7 +52,6 @@ const Field = ({
               mode="outlined"
               activeOutlineColor={colors.buttonPrimary}
               error={touched[fieldName] ? !!errors[fieldName] : undefined}
-              left={<TextInput.Affix text="+1" />}
             />
           </View>
 

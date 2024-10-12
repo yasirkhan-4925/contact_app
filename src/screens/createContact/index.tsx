@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import dynamicStyles from './styles';
 import Header from './components/header';
 import ContactForm from '@app/components/forms/contactForm';

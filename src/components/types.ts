@@ -80,7 +80,7 @@ export interface ContactFormValues {
   firstName: string;
   lastName: string;
   company: string;
-  PhoneNumbers: phoneNumber[];
+  phoneNumbers: phoneNumber[];
 }
 
 type phoneNumber = {

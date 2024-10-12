@@ -7,6 +7,7 @@ export interface Colors {
   textSecondary: string;
   buttonDarkSecondary: string;
   buttonPrimary: string;
+  red: string;
 }
 
 export const colors: Colors = {
@@ -18,4 +19,5 @@ export const colors: Colors = {
   textSecondary: '#cacbcc',
   buttonDarkSecondary: '#4252ff',
   buttonPrimary: '#a1a7f0',
+  red: '#cf4c59',
 };

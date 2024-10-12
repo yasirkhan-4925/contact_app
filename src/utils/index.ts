@@ -12,4 +12,4 @@ export {
 } from './contactPermission';
 
 export {checkFormikError, getFormikValues} from './formikMethods';
-export {isObjectEmpty} from './general';
+export {isObjectEmpty, generateUniqueId} from './general';
