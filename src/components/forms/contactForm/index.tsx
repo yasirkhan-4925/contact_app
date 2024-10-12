@@ -15,6 +15,7 @@ import {IconSetsEnum} from '@app/utils/types';
 import {moderateScale, generateUniqueId} from '@app/utils';
 import AppText from '@app/components/custom/appText';
 import Button from '@app/components/custom/button';
+import useContactForm from './useContactForm';
 
 // const ContactSchema = Yup.object().shape({
 //   firstName: Yup.string().required('first name is required'),
@@ -35,28 +36,14 @@ const initialValues: ContactFormValues = {
 };
 
 const ContactForm = forwardRef<FormikProps<ContactFormValues>, {}>((_, ref) => {
-  const styles = dynamicStyles();
-  const phoneFieldArrayHelpersRef = useRef<FieldArrayRenderProps | null>(null);
-  const emailFieldArrayHelpersRef = useRef<FieldArrayRenderProps | null>(null);
-
-  const removeField = (helper: FieldArrayRenderProps, index: number) => {
-    helper.remove(index);
-  };
-
-  const addPhoneField = () => {
-    phoneFieldArrayHelpersRef?.current?.push({
-      id: generateUniqueId(),
-      label: '',
-      number: '',
-    });
-  };
-  const addEmailField = () => {
-    emailFieldArrayHelpersRef?.current?.push({
-      id: generateUniqueId(),
-      label: '',
-      email: '',
-    });
-  };
+  const {
+    styles,
+    phoneFieldArrayHelpersRef,
+    emailFieldArrayHelpersRef,
+    removeField,
+    addEmailField,
+    addPhoneField,
+  } = useContactForm();
 
   return (
     <ScrollView>

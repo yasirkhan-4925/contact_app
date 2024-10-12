@@ -31,8 +31,6 @@ export default function useContact() {
 
       if (values) {
         const contact = await createContact(values);
-        console.log('🚀 ~ onSaveButtonPressed ~ contact:', contact);
-
         if (contact) {
           navigation.popToTop();
         }
