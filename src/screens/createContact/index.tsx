@@ -1,17 +1,17 @@
-import {colors} from '@app/assets/colors';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
+import dynamicStyles from './styles';
+import Header from './components/header';
+import ContactForm from '@app/components/forms/contactForm';
+import useContact from './useContact';
 
 const CreateContact = () => {
+  const styles = dynamicStyles();
+  const {onSaveButtonPressed, formikRef} = useContact();
   return (
-    <View
-      style={{
-        backgroundColor: colors.bgPrimary,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <Text>Create contact</Text>
+    <View style={styles.container}>
+      <Header onSaveButtonPress={onSaveButtonPressed} />
+      <ContactForm ref={formikRef} />
     </View>
   );
 };

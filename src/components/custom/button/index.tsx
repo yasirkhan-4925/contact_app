@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleProp, TouchableOpacity, ViewStyle} from 'react-native';
+import {StyleProp, TouchableOpacity, View, ViewStyle} from 'react-native';
 import dynamicStyles from './styles';
 import AppText from '../appText';
 import {ButtonSizeEnum} from '@app/components/types';
@@ -81,12 +81,14 @@ const Button = ({
       activeOpacity={0.8}
       style={[styles.container, getButtonSize(buttonSize), containerStyle]}>
       {buttonIconName && buttonIconSetName && (
-        <Icon
-          name={buttonIconName}
-          iconSetName={buttonIconSetName || ('' as IconSetsEnum)}
-          size={buttonIconSize}
-          color={buttonIconColor}
-        />
+        <View style={styles.iconContainer}>
+          <Icon
+            name={buttonIconName}
+            iconSetName={buttonIconSetName || ('' as IconSetsEnum)}
+            size={buttonIconSize}
+            color={buttonIconColor}
+          />
+        </View>
       )}
 
       <AppText textStyles={[buttonTextColor, getButtonText(buttonSize)]}>

@@ -11,6 +11,7 @@ import {SafeAreaView} from 'react-native';
 
 import AppNavigation from '@app/navigation/appNavigation';
 import {colors} from '@app/assets/colors';
+import {PaperProvider} from 'react-native-paper';
 function App(): React.JSX.Element {
   const backgroundStyle = {
     flex: 1,
@@ -18,9 +19,11 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <AppNavigation />
-    </SafeAreaView>
+    <PaperProvider>
+      <SafeAreaView style={backgroundStyle}>
+        <AppNavigation />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 
