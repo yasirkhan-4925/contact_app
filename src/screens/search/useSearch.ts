@@ -1,6 +1,6 @@
 import {customSortContacts, filterContacts} from '@app/utils';
 import {useEffect, useState} from 'react';
-import {Keyboard} from 'react-native';
+import {debounce} from 'lodash';
 import Contacts from 'react-native-contacts';
 import {Contact} from 'react-native-contacts/type';
 export default function useSearch() {
@@ -12,12 +12,7 @@ export default function useSearch() {
   };
 
   const searchContacts = async (text: string) => {
-    console.log('🚀 ~ searchContacts ~ text:', text);
     try {
-      if (!text) {
-        setContacts([]);
-        return;
-      }
       const searchedContacts = await Contacts.getContactsMatchingString(text);
 
       if (searchContacts.length) {
@@ -36,8 +31,16 @@ export default function useSearch() {
     // console.log(e);
   };
 
-  useEffect(() => {
+  const debouncing = debounce(() => {
+    if (!searchQuery) return setContacts([]);
     onSearch(searchQuery);
+  }, 500);
+
+  useEffect(() => {
+    debouncing();
+    return () => {
+      debouncing.cancel();
+    };
   }, [searchQuery]);
 
   return {searchQuery, onChangeText, contacts};
