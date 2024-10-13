@@ -1,12 +1,18 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import styles from './styles';
-
+import dynamicStyles from './styles';
+import Header from './components/header';
+import {CustomView} from '@app/components';
+import ContactProfile from './components/contactProfile';
+import {ScrollView} from 'react-native';
 const ContactDetailsScreen = () => {
+  const styles = dynamicStyles();
   return (
-    <View style={styles.container}>
-      <Text>Contact Details Screen</Text>
-    </View>
+    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+      <CustomView containerStyle={styles.container}>
+        <Header />
+        <ContactProfile />
+      </CustomView>
+    </ScrollView>
   );
 };
 

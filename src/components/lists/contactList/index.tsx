@@ -36,6 +36,7 @@ const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}) => {
   return (
     <View style={styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={contacts}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
