@@ -62,11 +62,6 @@ const requestContactsReadPermission = async () => {
       return (
         (await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-          {
-            title: 'Contacts Permission',
-            message: 'This app would like to read your contacts',
-            buttonPositive: 'Give Permission',
-          },
         )) === PermissionsAndroid.RESULTS.GRANTED
       );
     } catch (error) {

@@ -14,25 +14,14 @@ import {moderateScale} from '@app/utils';
 import {View} from 'react-native';
 import {colors} from '@app/assets/colors';
 import useHome from './useHome';
-import {openSettings} from '@app/utils/contactPermission';
 
 const HomeScreen = () => {
-  const {
-    onPressAddIcon,
-    isPermissionGiven,
-    loading,
-    permissionLoading,
-    contacts,
-  } = useHome();
+  const {onPressAddIcon, isPermissionGiven, loading, contacts} = useHome();
 
   if (!isPermissionGiven) {
     return (
       <CustomView containerStyle={styles.container}>
-        {permissionLoading ? (
-          <></>
-        ) : (
-          <RequestPermission promptText="We need Permission to access Contacts" />
-        )}
+        <RequestPermission promptText="We need Permission to access Contacts" />
       </CustomView>
     );
   }

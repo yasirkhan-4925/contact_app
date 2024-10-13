@@ -39,8 +39,8 @@ const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}) => {
         data={contacts}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        initialNumToRender={500}
-        windowSize={40}
+        initialNumToRender={20}
+        windowSize={10}
         getItemLayout={(_, index) => ({
           length: 70,
           offset: 70 * index,

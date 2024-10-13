@@ -14,11 +14,11 @@ import Contacts from 'react-native-contacts';
 import {AppState, Platform} from 'react-native';
 import {Contact} from 'react-native-contacts/type';
 export default function useHome() {
-  const [loading, setLoading] = useState(false);
-  const [permissionLoading, setPermissionLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
   const [contacts, setContacts] = useState<Contact[]>([]);
 
-  const [isPermissionGiven, setIsPermissionGiven] = useState(false);
+  const [isPermissionGiven, setIsPermissionGiven] = useState(true);
 
   const isAlreadyLoadedRef = useRef(false);
   const navigation = useNavigation();
@@ -49,11 +49,10 @@ export default function useHome() {
 
   async function getContacts() {
     try {
-      setPermissionLoading(true);
       const isReadContactPermissionGranted =
         await requestContactsReadPermission();
-      setPermissionLoading(false);
-      if (!isReadContactPermissionGranted) return;
+
+      if (!isReadContactPermissionGranted) return setIsPermissionGiven(false);
 
       setIsPermissionGiven(isReadContactPermissionGranted);
 
@@ -67,10 +66,9 @@ export default function useHome() {
     if (status === 'foreground' || status === 'active') {
       if (Platform.OS === 'android') {
         try {
-          setPermissionLoading(true);
           const isPermissionGiven = await checkContactReadPermission();
-          setPermissionLoading(false);
-          if (!isPermissionGiven) return;
+
+          if (!isPermissionGiven) return setIsPermissionGiven(false);
 
           setIsPermissionGiven(isPermissionGiven);
           loadContacts();
@@ -94,6 +92,5 @@ export default function useHome() {
     contacts,
     loading,
     isPermissionGiven,
-    permissionLoading,
   };
 }
