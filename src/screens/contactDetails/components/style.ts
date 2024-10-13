@@ -11,6 +11,7 @@ export default function dynamicStyles() {
     avatarTextStyles: {
       fontSize: moderateScale(80),
       fontWeight: 'bold',
+      color: colors.textSecondary,
     },
     avatarContainer: {
       marginTop: verticalScale(20),

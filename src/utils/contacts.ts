@@ -1,6 +1,9 @@
+import {Contact as ContactType} from 'react-native-contacts/type';
+import Contact from 'react-native-contacts';
+
 export function customSortContacts(a: any, b: any) {
-  const nameA = a.displayName.toUpperCase();
-  const nameB = b.displayName.toUpperCase();
+  const nameA = a.displayName?.toUpperCase();
+  const nameB = b.displayName?.toUpperCase();
 
   // If both names start with 'a', or both don't start with 'a', compare normally
   if (
@@ -15,12 +18,8 @@ export function customSortContacts(a: any, b: any) {
 }
 
 export function filterContacts(c: any) {
-  return c
-    .filter((c: any) => c.phoneNumbers.length > 0)
-    .map((c: any) => {
-      return {
-        displayName: c?.givenName + ' ' + c?.middleName,
-        phoneNumbers: c['phoneNumbers'],
-      };
-    });
+  return c.filter((c: any) => c.givenName?.trim().length > 0);
+}
+export function deleteContact(contact: ContactType) {
+  return Contact.deleteContact(contact);
 }

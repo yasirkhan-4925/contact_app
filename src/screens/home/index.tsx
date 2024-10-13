@@ -5,7 +5,6 @@ import {
   CustomView,
   ContactList,
   IconButton,
-  AppText,
   Loading,
   RequestPermission,
 } from '@app/components';

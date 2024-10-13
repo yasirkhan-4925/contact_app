@@ -2,27 +2,31 @@ import ContactListItem from '@app/components/listItems/contactListItem';
 import React, {useCallback} from 'react';
 import {FlatList, View} from 'react-native';
 import dynamicStyles from './styles';
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {Screen} from '@app/navigation/constant';
 import {Contact} from 'react-native-contacts/type';
+import {RootStackParamList} from '@app/navigation/types';
 
 interface Props {
   contacts: Contact[];
 }
 
-const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}) => {
+const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}: Props) => {
   const styles = dynamicStyles();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-  const onPressContactListItem = useCallback(() => {
-    navigation.navigate(Screen.ContactDetails as never);
-  }, [navigation]);
+  const onPressContactListItem = useCallback(
+    (item: Contact) => {
+      navigation.navigate(Screen.ContactDetails, {contact: item});
+    },
+    [navigation],
+  );
 
   const renderItem = useCallback(
     ({item}: {item: Contact}) => (
       <ContactListItem
-        onPress={onPressContactListItem}
-        userName={item.displayName}
+        onPress={() => onPressContactListItem(item)}
+        contact={item}
       />
     ),
     [onPressContactListItem],
@@ -41,7 +45,7 @@ const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}) => {
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         initialNumToRender={20}
-        windowSize={10}
+        windowSize={30}
         getItemLayout={(_, index) => ({
           length: 70,
           offset: 70 * index,

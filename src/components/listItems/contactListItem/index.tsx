@@ -4,13 +4,14 @@ import {TouchableOpacity, View} from 'react-native';
 import dynamicStyles from './styles';
 import {moderateScale} from '@app/utils';
 import {ETextType} from '@app/components/types';
+import {Contact} from 'react-native-contacts/type';
 
 interface Props {
-  userName: string;
+  contact: Contact;
   onPress: () => void;
 }
 
-const ContactListItem = ({userName, onPress}: Props) => {
+const ContactListItem = ({contact, onPress}: Props) => {
   const styles = dynamicStyles();
   return (
     <TouchableOpacity
@@ -18,13 +19,13 @@ const ContactListItem = ({userName, onPress}: Props) => {
       activeOpacity={0.7}
       style={styles.container}>
       <Avatar
-        username={userName}
+        username={contact?.givenName || ''}
         size={moderateScale(45)}
         customTextStyles={styles.avatarTextStyles}
       />
       <View style={styles.textContainer}>
         <AppText numberOfLines={1} type={ETextType.H6}>
-          {userName}
+          {contact?.displayName}
         </AppText>
       </View>
     </TouchableOpacity>

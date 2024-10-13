@@ -5,8 +5,13 @@ import {moderateScale} from '@app/utils';
 import {ETextType} from '@app/components/types';
 import {IconSetsEnum} from '@app/utils/types';
 import {colors} from '@app/assets/colors';
+import {Contact} from 'react-native-contacts/type';
 
-const ContactProfile = () => {
+interface Props {
+  contact: Contact;
+  onDeleteContactPress: (contact: Contact) => void;
+}
+const ContactProfile = ({contact, onDeleteContactPress}: Props) => {
   const styles = dynamicStyles();
   return (
     <>
@@ -14,14 +19,14 @@ const ContactProfile = () => {
         {/* top profile details  */}
         <View style={styles.avatarContainer}>
           <Avatar
-            username="Muhammad Yasir"
+            username={contact.givenName || contact.familyName || ''}
             size={moderateScale(150)}
             customTextStyles={styles.avatarTextStyles}
           />
         </View>
         <View style={styles.userNameContainer}>
           <AppText numberOfLines={2} centered type={ETextType.H3}>
-            Muhammad Yasir
+            {contact.displayName}
           </AppText>
         </View>
         {/* profile action buttons */}
@@ -60,43 +65,65 @@ const ContactProfile = () => {
 
         {/* contact info */}
 
-        <View style={styles.contactInfoContainer}>
-          <AppText type={ETextType.H7}>Contact Info</AppText>
+        {contact.phoneNumbers.length || contact.emailAddresses.length ? (
+          <View style={styles.contactInfoContainer}>
+            <AppText type={ETextType.H7}>Contact Info</AppText>
+            {contact.phoneNumbers.length ? (
+              <>
+                {contact.phoneNumbers.map((item, index) => (
+                  <View key={index.toString()} style={styles.contactInfoItem}>
+                    <View style={styles.contactInfoIconContainer}>
+                      {index === 0 ? (
+                        <Icon
+                          iconSetName={IconSetsEnum.MaterialIcons}
+                          name="phone"
+                          size={moderateScale(30)}
+                        />
+                      ) : null}
+                    </View>
+                    <View>
+                      <AppText numberOfLines={1}>{item.number}</AppText>
+                    </View>
+                  </View>
+                ))}
+              </>
+            ) : null}
 
-          <View style={styles.contactInfoItem}>
-            <View style={styles.contactInfoIconContainer}>
-              <Icon
-                iconSetName={IconSetsEnum.MaterialIcons}
-                name="phone"
-                size={moderateScale(30)}
-              />
-            </View>
-            <View>
-              <AppText numberOfLines={1}>03091219881</AppText>
-            </View>
+            {/* email - items */}
+            {contact.emailAddresses.length ? (
+              <>
+                {contact.emailAddresses.map((item, index) => (
+                  <View key={index.toString()} style={styles.contactInfoItem}>
+                    <View style={styles.contactInfoIconContainer}>
+                      {index == 0 ? (
+                        <Icon
+                          iconSetName={IconSetsEnum.MaterialIcons}
+                          name="email"
+                          size={moderateScale(30)}
+                        />
+                      ) : null}
+                    </View>
+                    <View>
+                      <AppText numberOfLines={1}>{item.email}</AppText>
+                    </View>
+                  </View>
+                ))}
+              </>
+            ) : null}
           </View>
-          {/* email - items */}
-
-          <View style={styles.contactInfoItem}>
-            <View style={styles.contactInfoIconContainer}>
-              <Icon
-                iconSetName={IconSetsEnum.MaterialIcons}
-                name="email"
-                size={moderateScale(30)}
-              />
-            </View>
-            <View>
-              <AppText numberOfLines={1}>03091219881</AppText>
-            </View>
-          </View>
-        </View>
+        ) : null}
       </View>
       {/* divider */}
       <View style={styles.divider} />
       {/* contacts settings */}
       <AppText type={ETextType.H7}>Contact Settings</AppText>
       <View style={styles.settingsContainer}>
-        <TouchableOpacity activeOpacity={0.8} style={styles.settingsItem}>
+        <TouchableOpacity
+          onPress={() => {
+            onDeleteContactPress(contact);
+          }}
+          activeOpacity={0.8}
+          style={styles.settingsItem}>
           <View style={styles.settingsIconContainer}>
             <Icon
               color={colors.red}

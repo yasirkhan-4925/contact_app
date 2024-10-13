@@ -12,6 +12,7 @@ export default function useSearch() {
   };
 
   const searchContacts = async (text: string) => {
+    console.log('🚀 ~ searchContacts ~ text:', text);
     try {
       if (!text) {
         setContacts([]);

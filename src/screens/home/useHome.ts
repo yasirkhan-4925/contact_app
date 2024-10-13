@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {Screen} from '@app/navigation/constant';
 
 import {
@@ -6,7 +6,6 @@ import {
   customSortContacts,
   filterContacts,
   requestContactsReadPermission,
-  showSettingsAlert,
 } from '@app/utils';
 import {useEffect, useRef, useState} from 'react';
 
@@ -33,6 +32,7 @@ export default function useHome() {
 
     try {
       const contacts = await Contacts.getAll();
+
       if (contacts) {
         const filteredContacts: Contact[] =
           filterContacts(contacts).sort(customSortContacts);
@@ -79,9 +79,9 @@ export default function useHome() {
     }
   }
 
-  useEffect(() => {
+  useFocusEffect(() => {
     getContacts();
-  }, []);
+  });
 
   useEffect(() => {
     AppState.addEventListener('change', AppStateChangeListener);

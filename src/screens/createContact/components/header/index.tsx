@@ -32,7 +32,7 @@ const Header = ({onSaveButtonPress}: Props) => {
 
       <View style={styles.btnContainer}>
         <Button
-          onPress={onSaveButtonPress}
+          onPress={() => onSaveButtonPress()}
           buttonText="Save"
           buttonSize={ButtonSizeEnum.SMALL}
         />
