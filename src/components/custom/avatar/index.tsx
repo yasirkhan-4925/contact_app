@@ -10,7 +10,7 @@ const bgColors = [
   '#e67e22', // carrot
   '#e74c3c', // alizarin
   '#1abc9c', // turquoise
-  '#2c3e50', // midnight blue
+  '#ffff', // midnight blue
   '#FDA7DF',
   '#9980FA',
   '#B53471',

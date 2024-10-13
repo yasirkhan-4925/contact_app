@@ -1,4 +1,4 @@
-import {useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import {FormikProps} from 'formik';
 import {
   checkFormikError,
@@ -9,15 +9,24 @@ import {
 } from '@app/utils';
 import {ContactFormValues} from '@app/components/types';
 import Contacts from 'react-native-contacts';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {showToast} from '@app/utils/general';
+import {CreateContactScreenRouteProp} from '@app/navigation/types';
+import {updateContactData} from '@app/utils/contacts';
 
 export default function useContact() {
   const navigation = useNavigation<any>();
+  const route = useRoute<CreateContactScreenRouteProp>();
+  const contactData = route?.params?.contact;
+  const isEditable = route?.params?.isEditable;
+
   const formikRef = useRef<FormikProps<ContactFormValues> | null>(null);
 
-  const onSaveButtonPressed = async () => {
-    const status = await requestContactWritePermission();
-    if (!status) {
+  const onSaveButtonPressed = async (
+    onSaveMessage: string = 'Contact Saved Successfully',
+  ) => {
+    const isPermissionGranted = await requestContactWritePermission();
+    if (!isPermissionGranted) {
       return showSettingsAlert(
         'You have to give contact permission in order to save contacts',
       );
@@ -30,11 +39,32 @@ export default function useContact() {
       const values = await getFormikValues(formikRef);
 
       if (values) {
-        const contact = await createContact(values);
-        if (contact) {
-          navigation.popToTop();
+        if (isEditable) {
+          await updateContact(values);
+        } else {
+          await createContact(values);
         }
+
+        showToast(onSaveMessage);
+        navigation.popToTop();
       }
+    }
+  };
+
+  const updateContact = async (values: ContactFormValues) => {
+    try {
+      const newContact = {
+        ...contactData,
+        givenName: values.firstName,
+        familyName: values.lastName,
+        phoneNumbers: values.phoneNumbers,
+        emailAddresses: values.emailAddresses,
+        company: values.company,
+      };
+
+      return await updateContactData(newContact as never);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,9 +80,36 @@ export default function useContact() {
 
       return await Contacts.addContact(newContact);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
-  return {onSaveButtonPressed, formikRef};
+  const setFormikValuesFromParams = () => {
+    if (contactData) {
+      formikRef.current?.setValues({
+        firstName: contactData.givenName,
+        lastName: contactData.familyName,
+        company: contactData.company,
+        phoneNumbers: contactData.phoneNumbers,
+        emailAddresses: contactData.emailAddresses,
+      });
+      // formikRef.current?.setFieldValue('firstName', contactData.givenName);
+      // formikRef.current?.setFieldValue('lastName', contactData.familyName);
+      // formikRef.current?.setFieldValue('company', contactData.company);
+
+      // formikRef.current?.setFieldValue(
+      //   'phoneNumbers',
+      //   contactData.phoneNumbers,
+      // );
+      // formikRef.current?.setFieldValue(
+      //   'emailAddresses',
+      //   contactData.emailAddresses,
+      // );
+    }
+  };
+
+  useEffect(() => {
+    setFormikValuesFromParams();
+  }, []);
+  return {onSaveButtonPressed, formikRef, isEditable};
 }

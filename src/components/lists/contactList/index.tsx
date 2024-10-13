@@ -1,29 +1,57 @@
 import ContactListItem from '@app/components/listItems/contactListItem';
-import React from 'react';
-import {View} from 'react-native';
+import React, {useCallback} from 'react';
+import {FlatList, View} from 'react-native';
 import dynamicStyles from './styles';
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {Screen} from '@app/navigation/constant';
+import {Contact} from 'react-native-contacts/type';
+import {RootStackParamList} from '@app/navigation/types';
 
-const ContactList = () => {
+interface Props {
+  contacts: Contact[];
+}
+
+const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}: Props) => {
   const styles = dynamicStyles();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-  const onPressContactListItem = () => {
-    navigation.navigate(Screen.ContactDetails as never);
-  };
+  const onPressContactListItem = useCallback(
+    (item: Contact) => {
+      navigation.navigate(Screen.ContactDetails, {contact: item});
+    },
+    [navigation],
+  );
+
+  const renderItem = useCallback(
+    ({item}: {item: Contact}) => (
+      <ContactListItem
+        onPress={() => onPressContactListItem(item)}
+        contact={item}
+      />
+    ),
+    [onPressContactListItem],
+  );
+
+  const keyExtractor = useCallback(
+    (_: Contact, index: number) => index.toString(),
+    [],
+  );
+
   return (
     <View style={styles.container}>
-      <ContactListItem
-        onPress={onPressContactListItem}
-        userName="Muhammad Yasir"
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={contacts}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        initialNumToRender={10}
+        windowSize={10}
+        getItemLayout={(_, index) => ({
+          length: 70,
+          offset: 70 * index,
+          index,
+        })}
       />
-      <ContactListItem onPress={onPressContactListItem} userName="Wasi Ayub" />
-      <ContactListItem
-        onPress={onPressContactListItem}
-        userName="Sameer Ahmed Khan"
-      />
-      <ContactListItem onPress={onPressContactListItem} userName="Ashar Ali" />
     </View>
   );
 };

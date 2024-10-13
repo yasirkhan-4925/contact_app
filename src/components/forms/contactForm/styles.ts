@@ -11,6 +11,7 @@ export default function dynamicStyles() {
     removeAbleFieldContainer: {
       flexDirection: 'row',
       alignItems: 'center',
+      marginTop: verticalScale(10),
     },
     removeAbleField: {
       flex: 1,

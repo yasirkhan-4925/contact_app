@@ -14,20 +14,23 @@ interface Props {
   buttonBgColor?: string;
   containerStyle?: StyleProp<ViewStyle>;
   rounded?: boolean;
+  disabled?: boolean;
 }
 const IconButton = ({
   iconName,
   iconSetName,
   iconSize,
-  iconColor,
+  iconColor = colors.bgSecondary,
   onPress,
   buttonBgColor = colors.buttonPrimary,
   rounded = false,
   containerStyle = {},
+  disabled = false,
 }: Props) => {
   const styles = dynamicStyles(buttonBgColor, rounded);
   return (
     <TouchableOpacity
+      disabled={disabled}
       activeOpacity={0.8}
       onPress={onPress}
       style={[styles.container, containerStyle]}>

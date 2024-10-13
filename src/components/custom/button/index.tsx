@@ -24,9 +24,9 @@ interface Props {
 const Button = ({
   buttonText,
   buttonBgColor = colors.buttonPrimary,
-  buttonTextColor = colors.text,
+  buttonTextColor = colors.bgSecondary,
   buttonIconSetName,
-  buttonIconColor = colors.text,
+  buttonIconColor = colors.bgSecondary,
   buttonIconName = '',
   buttonIconSize = moderateScale(30),
   buttonSize = ButtonSizeEnum.LARGE,
@@ -91,7 +91,8 @@ const Button = ({
         </View>
       )}
 
-      <AppText textStyles={[buttonTextColor, getButtonText(buttonSize)]}>
+      <AppText
+        textStyles={[{color: buttonTextColor}, getButtonText(buttonSize)]}>
         {buttonText}
       </AppText>
     </TouchableOpacity>
