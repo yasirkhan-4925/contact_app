@@ -20,7 +20,7 @@ const IconButton = ({
   iconName,
   iconSetName,
   iconSize,
-  iconColor,
+  iconColor = colors.bgSecondary,
   onPress,
   buttonBgColor = colors.buttonPrimary,
   rounded = false,

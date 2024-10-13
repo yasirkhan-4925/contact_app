@@ -17,6 +17,7 @@ const Field = ({
   formikProps: {handleChange, values, handleBlur, touched, errors},
   fieldName,
 }: Props) => {
+  console.log('🚀 ~ fieldName:', fieldName);
   const styles = dynamicStyles();
   switch (formFieldType) {
     case FormFieldTypeEnum.TEXT_INPUT:

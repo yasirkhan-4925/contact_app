@@ -1,4 +1,5 @@
 import {colors} from '@app/assets/colors';
+import {verticalScale} from '@app/utils';
 import {StyleSheet} from 'react-native';
 
 export default function dynamicStyles() {
@@ -7,5 +8,6 @@ export default function dynamicStyles() {
       backgroundColor: colors.bgPrimary,
       flex: 1,
     },
+    containerScroll: {paddingBottom: verticalScale(20)},
   });
 }

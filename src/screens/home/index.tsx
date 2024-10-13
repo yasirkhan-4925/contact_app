@@ -42,6 +42,7 @@ const HomeScreen = () => {
               iconSize={moderateScale(35)}
               iconName="add"
               buttonBgColor={colors.buttonDarkSecondary}
+              iconColor={colors.white}
             />
           </View>
         </>

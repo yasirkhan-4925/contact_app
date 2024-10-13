@@ -34,7 +34,7 @@ export default function useSearch() {
   const debouncing = debounce(() => {
     if (!searchQuery) return setContacts([]);
     onSearch(searchQuery);
-  }, 500);
+  }, 600);
 
   useEffect(() => {
     debouncing();

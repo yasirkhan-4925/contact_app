@@ -40,7 +40,7 @@ export default function useHome() {
         setContacts(filteredContacts);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       isAlreadyLoadedRef.current = true;
       setLoading(false);
@@ -73,7 +73,7 @@ export default function useHome() {
           setIsPermissionGiven(isPermissionGiven);
           loadContacts();
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
       }
     }

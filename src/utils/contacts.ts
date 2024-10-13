@@ -1,5 +1,6 @@
 import {Contact as ContactType} from 'react-native-contacts/type';
 import Contact from 'react-native-contacts';
+import {ContactFormValues} from '@app/components/types';
 
 export function customSortContacts(a: any, b: any) {
   const nameA = a.displayName?.toUpperCase();
@@ -22,4 +23,8 @@ export function filterContacts(c: any) {
 }
 export function deleteContact(contact: ContactType) {
   return Contact.deleteContact(contact);
+}
+
+export function updateContactData(contact: ContactFormValues) {
+  return Contact.updateContact(contact as never);
 }

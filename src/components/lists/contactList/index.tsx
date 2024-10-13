@@ -44,8 +44,8 @@ const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}: Props) => {
         data={contacts}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        initialNumToRender={20}
-        windowSize={30}
+        initialNumToRender={10}
+        windowSize={10}
         getItemLayout={(_, index) => ({
           length: 70,
           offset: 70 * index,

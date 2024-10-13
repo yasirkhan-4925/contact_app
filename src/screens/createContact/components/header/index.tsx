@@ -7,10 +7,11 @@ import {useNavigation} from '@react-navigation/native';
 import {ButtonSizeEnum, ETextType} from '@app/components/types';
 
 interface Props {
-  onSaveButtonPress: () => void;
+  onSaveButtonPress: (message?: string) => void;
+  isEditable?: boolean;
 }
 
-const Header = ({onSaveButtonPress}: Props) => {
+const Header = ({onSaveButtonPress, isEditable = false}: Props) => {
   const navigation = useNavigation();
   const styles = dynamicStyles();
 
@@ -32,7 +33,11 @@ const Header = ({onSaveButtonPress}: Props) => {
 
       <View style={styles.btnContainer}>
         <Button
-          onPress={() => onSaveButtonPress()}
+          onPress={() =>
+            onSaveButtonPress(
+              isEditable ? 'Contact Edit Successfully' : undefined,
+            )
+          }
           buttonText="Save"
           buttonSize={ButtonSizeEnum.SMALL}
         />

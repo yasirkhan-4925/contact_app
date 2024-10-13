@@ -4,7 +4,6 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {Contact} from 'react-native-contacts/type';
 import {Alert} from 'react-native';
 import {showToast} from '@app/utils/general';
-import {Screen} from '@app/navigation/constant';
 
 export default function useContactDetails() {
   const route = useRoute<ContactDetailsScreenRouteProp>();
@@ -36,7 +35,7 @@ export default function useContactDetails() {
         {cancelable: false},
       );
     } catch (error) {
-      console.log('error deleting contact ', error);
+      console.error('error deleting contact ', error);
     }
   };
 

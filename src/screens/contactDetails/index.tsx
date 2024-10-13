@@ -11,7 +11,7 @@ const ContactDetailsScreen = () => {
   return (
     <ScrollView contentContainerStyle={{flexGrow: 1}}>
       <CustomView containerStyle={styles.container}>
-        <Header />
+        <Header contact={contact} />
         <ContactProfile
           onDeleteContactPress={onDeleteContactPress}
           contact={contact}
