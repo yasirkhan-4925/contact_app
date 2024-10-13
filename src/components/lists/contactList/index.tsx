@@ -1,29 +1,52 @@
 import ContactListItem from '@app/components/listItems/contactListItem';
-import React from 'react';
-import {View} from 'react-native';
+import React, {useCallback} from 'react';
+import {FlatList, View} from 'react-native';
 import dynamicStyles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {Screen} from '@app/navigation/constant';
+import {Contact} from 'react-native-contacts/type';
 
-const ContactList = () => {
+interface Props {
+  contacts: Contact[];
+}
+
+const ContactList: React.FC<{contacts: Contact[]}> = ({contacts}) => {
   const styles = dynamicStyles();
   const navigation = useNavigation();
 
-  const onPressContactListItem = () => {
+  const onPressContactListItem = useCallback(() => {
     navigation.navigate(Screen.ContactDetails as never);
-  };
+  }, [navigation]);
+
+  const renderItem = useCallback(
+    ({item}: {item: Contact}) => (
+      <ContactListItem
+        onPress={onPressContactListItem}
+        userName={item.displayName}
+      />
+    ),
+    [onPressContactListItem],
+  );
+
+  const keyExtractor = useCallback(
+    (_: Contact, index: number) => index.toString(),
+    [],
+  );
+
   return (
     <View style={styles.container}>
-      <ContactListItem
-        onPress={onPressContactListItem}
-        userName="Muhammad Yasir"
+      <FlatList
+        data={contacts}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        initialNumToRender={500}
+        windowSize={40}
+        getItemLayout={(_, index) => ({
+          length: 70,
+          offset: 70 * index,
+          index,
+        })}
       />
-      <ContactListItem onPress={onPressContactListItem} userName="Wasi Ayub" />
-      <ContactListItem
-        onPress={onPressContactListItem}
-        userName="Sameer Ahmed Khan"
-      />
-      <ContactListItem onPress={onPressContactListItem} userName="Ashar Ali" />
     </View>
   );
 };

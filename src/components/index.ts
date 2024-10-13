@@ -7,3 +7,5 @@ export {default as ContactListItem} from './listItems/contactListItem';
 export {default as Icon} from './custom/Icon';
 export {default as IconButton} from './custom/iconButton';
 export {default as CustomFormField} from './custom/customFormFIeld';
+export {default as Loading} from './custom/loading';
+export {default as RequestPermission} from './custom/reqestPermission';

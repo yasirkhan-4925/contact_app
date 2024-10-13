@@ -104,3 +104,5 @@ export enum FormFieldTypeEnum {
   TEXT_INPUT = 'TEXT_INPUT',
   PHONE_INPUT = 'PHONE_INPUT',
 }
+
+export type ActivityIndicatorSizeType = 'small' | 'large' | number;
